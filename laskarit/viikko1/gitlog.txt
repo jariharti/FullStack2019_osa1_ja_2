@@ -1,0 +1,131 @@
+commit 132291b5e8f0de254ceb64b40853f1d3ceb55ce8
+Author: Jari Hartikainen <jihartikainen@hotmail.com>
+Date:   Tue Apr 30 12:08:17 2019 +0300
+
+    file1 poistettu, file2 muutettu file222
+
+ tiedostoja/file2              | 0
+ tiedostoja/{file1 => file222} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit bc67cb91219c7ba2dca7d43897cbba48ab63933d
+Author: Jari Hartikainen <jihartikainen@hotmail.com>
+Date:   Tue Apr 30 12:02:21 2019 +0300
+
+    useita muutoksia
+
+ tiedostoja/file22 | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit af5430c6f964ee959e3c956b351f06fa0431d3ff
+Author: Jari Hartikainen <jihartikainen@hotmail.com>
+Date:   Tue Apr 30 11:38:49 2019 +0300
+
+    file1 ja file2 lisätty
+
+ tiedostoja/file1 | 3 ---
+ tiedostoja/file2 | 0
+ 2 files changed, 3 deletions(-)
+
+commit b920c8d60577b3f26f3c24acaf683cb62c015cf2
+Author: Jari Hartikainen <jihartikainen@hotmail.com>
+Date:   Tue Apr 30 11:35:37 2019 +0300
+
+    file3 muutettu
+
+ tiedostoja/file1 | 3 +++
+ tiedostoja/file3 | 6 ++++++
+ 2 files changed, 9 insertions(+)
+
+commit 0a350119317457c176e7d8f84b792a63a86e11c0
+Author: Jari Hartikainen <jihartikainen@hotmail.com>
+Date:   Tue Apr 30 11:21:36 2019 +0300
+
+    muutokset eka.txt ja kolmas.txt
+
+ eka.txt    | 10 ++++++----
+ kolmas.txt |  9 ++++++++-
+ 2 files changed, 14 insertions(+), 5 deletions(-)
+
+commit c25c039ae1b0b2d8970dd8206efec8bdbdc00399
+Author: Jari Hartikainen <jihartikainen@hotmail.com>
+Date:   Tue Apr 30 11:20:02 2019 +0300
+
+    tiedosto.txt poistettu, eka.txt lisätty
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit a02fbcd808687ed1d18cedf724e45ae10af37b43
+Author: Jari Hartikainen <jihartikainen@hotmail.com>
+Date:   Tue Apr 30 11:18:54 2019 +0300
+
+    toinen.txt poistettu
+
+ toinen.txt | 4 ----
+ 1 file changed, 4 deletions(-)
+
+commit ae1742ab01fbd0109ca6705ef456368d128f651f
+Author: Jari Hartikainen <jihartikainen@hotmail.com>
+Date:   Tue Apr 30 11:14:36 2019 +0300
+
+    poistoja ja lisäyksiä tiedosto.txt
+
+ tiedosto.txt | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit c57f0b01b06185fc5182348034b035a8d0ad787a
+Author: Jari Hartikainen <jihartikainen@hotmail.com>
+Date:   Tue Apr 30 11:13:24 2019 +0300
+
+    paljon tekstiä tiedosto.txt
+
+ tiedosto.txt | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+commit 4e7f5a075941b9eea8beeb9dace551471e5cd845
+Author: Jari Hartikainen <jihartikainen@hotmail.com>
+Date:   Tue Apr 30 11:10:27 2019 +0300
+
+    uusi hakemisto stuff ja tiedosto
+
+ stuff/uusi_tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit cb9c8f07413054567f7702dfa28b8c53b9bcf64e
+Author: Jari Hartikainen <jihartikainen@hotmail.com>
+Date:   Tue Apr 30 11:09:05 2019 +0300
+
+    muutoksia toinen.txt ja kolmas.txt
+
+ kolmas.txt | 4 ++++
+ toinen.txt | 4 ++++
+ 2 files changed, 8 insertions(+)
+
+commit be52cad7606c5f6417828073c6f81aa46ed4b46f
+Author: Jari Hartikainen <jihartikainen@hotmail.com>
+Date:   Tue Apr 30 11:06:57 2019 +0300
+
+    uusi tiedosto kolmas.txt
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 95381b411a83a3cd620a73bb6a6b354c53798be4
+Author: Jari Hartikainen <jihartikainen@hotmail.com>
+Date:   Tue Apr 30 11:04:25 2019 +0300
+
+    muutos ja lisäys
+
+ tiedosto.txt | 5 +++++
+ toinen.txt   | 0
+ 2 files changed, 5 insertions(+)
+
+commit b443ebacd1ebaea5346f4bdc73ff8e2bf240c80c
+Author: Jari Hartikainen <jihartikainen@hotmail.com>
+Date:   Tue Apr 30 11:01:58 2019 +0300
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
