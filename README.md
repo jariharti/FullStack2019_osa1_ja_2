@@ -1,4 +1,5 @@
 # Ohjelmistotekniikan harjoitustyöt, Fullstack web-sovelluskehitys
+**Teema: front end development** <br />
 **Jari Hartikainen, 23.5.2019** <br />
 **my email: jihartikainen@hotmail.com** <br />
 [my Linkedin profile](https://www.linkedin.com/in/jari-hartikainen/)
