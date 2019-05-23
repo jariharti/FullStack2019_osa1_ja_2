@@ -1,5 +1,5 @@
 # Ohjelmistotekniikan harjoitustyöt, Fullstack web-sovelluskehitys
-Harjoitustyön tekijä **Jari Hartikainen, 30.4.2019**
+**Jari Hartikainen, 23.5.2019**
 
 **Yleistä**
 Kurssilla tutustutaan JavaScriptilla tapahtuvaan moderniin websovelluskehitykseen. Pääpaino on React-kirjaston avulla toteutettavissa single page -sovelluksissa, ja niitä tukevissa Node.js:llä toteutetuissa REST-rajapinnoissa. Kurssilla tutustutaan myös GraphQL:n eli REST:ille vaihtoehtoiseen rajapintojen toteutusperiaatteeseen
