@@ -3,19 +3,18 @@ const baseUrl = '/api/persons'
 
 const getAll = () => {
   const request = axios.get(baseUrl)
-  return request.then(response => response.data)
+  return request.then(response => response)
 }
+
 
 const create = (newObject) => {
   const request = axios.post(baseUrl, newObject)
-  return request.then(response => response.data)
+  return request.then(response => response)
 }
 
 const remove = (deletedObject) => {
   const request = axios.delete(`${baseUrl}/${deletedObject.id}`)
-  return request.then(response => {
-    return response.status;
-  })
+  return request.then(response => response)
 }
 
 const update = (updatedObject) => {

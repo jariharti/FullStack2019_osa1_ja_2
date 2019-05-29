@@ -1,5 +1,5 @@
-/* Jari Hartikainen, 22.5.2019 */
-/* Aalto University, Course: Full Stack Web Development, Part 2: Puhelinluettelo step1...step12*/
+/* Jari Hartikainen, 29.5.2019 */
+/* Aalto University, Course: Full Stack Web Development, Part 3: Puhelinluettelo step9...step11*/
 
 import React, { useState, useEffect } from 'react'
 import commsService from './services/comms'
@@ -20,7 +20,7 @@ const App = () => {
     commsService
     .getAll().then(response => {
       console.log("getall operation succeeded",response)
-      setPersons(response)
+      setPersons(response.data)
       setNotificationMessage(
         `Phonebook information received successfully`
       )
@@ -46,97 +46,37 @@ const App = () => {
     console.log("addName")
     event.preventDefault()
     
-    // Test if name already in the phonebook
-    if ((persons.map(person2 => person2.name)).includes(new_name)) {
-      console.log("Nimi jo puhelinluettelossa, testaa seuraavaksi onko puhelinumero eri")
-      // Test if phone number is new for the person, that already in the phonebook
-      if ((persons.filter(person3 => person3.name === new_name)[0].number) === new_number){
-        console.log("Nimi jo puhelinluettelossa, samoin puhelinnumero")
-        // Both name and phone number already in the phonebook
-        alert(`${new_name} on jo luettelossa`);
-      }
-      else {
-          console.log("Haluat korvata vanhan numeron uudella")
-          // ask if user wants to change phoine number for existing name
-          if (window.confirm(`${new_name} on jo luettelossa, korvataanko vanha numero uudella?`)) {
-            console.log("vastasit OK")
-
-
-            // define new person array based on giving information
-            var updated_name = {
-              name: (persons.filter(updates => updates.name === new_name))[0].name,
-              number: new_number,
-              id: (persons.filter(updates => updates.name === new_name))[0].id
-            }
-
-            console.log("updated_name",updated_name)
-
-
-            commsService
-            .update(updated_name).then(response => {
-              console.log("update operation succeeded",response)
-              console.log("persons",persons)
-              // remove person's old information from phonebook, add a new one
-              setPersons((persons.filter(all => all.id !== updated_name.id)).concat(updated_name))
-              setNotificationMessage(
-                `${new_name}'s phone number changed succesfully to ${new_number}`
-              )
-              setNotificationMessageType("success")
-              setTimeout(() => {
-                setNotificationMessage(null)
-                setNotificationMessageType("success")
-              }, 5000)
-            })
-            .catch(error => {
-              console.log("error situation")
-              setNotificationMessage(
-                `Unfourtunately ${new_name} data already removed from server`
-              )
-              setNotificationMessageType("error")
-              setPersons((persons.filter(n=>n.id !==updated_name.id)))
-              setTimeout(() => {
-                setNotificationMessage(null)
-                setNotificationMessageType("error")
-              }, 5000)
-            })
-
-
-
-          }
-      }
+    // Add new person tho phonebook
+    var nameObject = {
+      name: new_name,
+      number: new_number,
+      // id: `${new_name}${new_number}`.toString()
     }
-  else {
-      // Add new person tho phonebook
-      var nameObject = {
-        name: new_name,
-        number: new_number,
-        id: `${new_name}${new_number}`.toString()
-      }
-      console.log("nameObject",nameObject)
-      commsService
-        .create(nameObject).then(response => {
-          console.log("received response from create operation",response)
-          setPersons(persons.concat(response))
-          setNotificationMessage(
-          `${new_name}'s data added succesfully to phonebook`
-         )
-         setNotificationMessageType("success")
-         setTimeout(() => {
-           setNotificationMessage(null)
-           setNotificationMessageType("success")
-         }, 5000)
-        })
-        .catch(error => {
-          setNotificationMessage(
-            `Oops.. Something went wrong when application tried to save ${new_name} data to the server`
-          )
+    console.log("nameObject",nameObject)
+    commsService
+      .create(nameObject).then(response => {
+        console.log("received response from create operation",response)
+        //setPersons(persons.concat(nameObject))
+        setPersons(response.data)
+        setNotificationMessage(
+        `${new_name}'s data added succesfully to phonebook`
+        )
+        setNotificationMessageType("success")
+        setTimeout(() => {
+          setNotificationMessage(null)
+          setNotificationMessageType("success")
+        }, 5000)
+      })
+      .catch(error => {
+        setNotificationMessage(
+          JSON.stringify(error.response.data)
+        )
+        setNotificationMessageType("error")
+        setTimeout(() => {
+          setNotificationMessage(null)
           setNotificationMessageType("error")
-          setTimeout(() => {
-            setNotificationMessage(null)
-            setNotificationMessageType("error")
-          }, 5000)
-        })
-      }
+        }, 5000)
+      })
     setNewName('')
     setNewNumber('')
   }
@@ -153,8 +93,10 @@ const App = () => {
       console.log("event.target.name",event.target.name)
       commsService
         .remove(delete_person).then(response => {
-          if (response === 200) {
+          console.log("delete operation ...",response)
+          if (response.status === 204) {
             console.log("delete operation succeeded",response)
+            console.log ("response ==== 204 => persons left...", persons_left)
             setPersons(persons_left)
             setNotificationMessage(
               `${delete_person_by_name}'s data removed succesfully from phonebook`
@@ -167,9 +109,9 @@ const App = () => {
           }
         })
         .catch(error => {
-          console.log("erroe 2 situation")
+          console.log("error 2 situation", error.response.data)
           setNotificationMessage(
-            `Unfourtunately ${delete_person_by_name} data already removed from server`
+            JSON.stringify(error.response.data)
           )
           setNotificationMessageType("error")
           setPersons((persons_left.filter(n=>n.id !==delete_person.id)))
