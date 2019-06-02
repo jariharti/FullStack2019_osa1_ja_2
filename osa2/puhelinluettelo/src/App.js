@@ -45,41 +45,98 @@ const App = () => {
   const addName = (event) => {
     console.log("addName")
     event.preventDefault()
-    
-    // Add new person tho phonebook
-    var nameObject = {
-      name: new_name,
-      number: new_number,
-      // id: `${new_name}${new_number}`.toString()
+
+    // Test if name already in the phonebook
+    if ((persons.map(person2 => person2.name)).includes(new_name)) {
+      console.log("Nimi jo puhelinluettelossa, testaa seuraavaksi onko puhelinumero eri")
+      // Test if phone number is new for the person, that already in the phonebook
+      if ((persons.filter(person3 => person3.name === new_name)[0].number) === new_number){
+        console.log("Nimi jo puhelinluettelossa, samoin puhelinnumero")
+        // Both name and phone number already in the phonebook
+        alert(`${new_name} on jo luettelossa`);
+      }
+      else {
+          console.log("Haluat korvata vanhan numeron uudella")
+          // ask if user wants to change phoine number for existing name
+          if (window.confirm(`${new_name} on jo luettelossa, korvataanko vanha numero uudella?`)) {
+            console.log("vastasit OK")
+
+
+            // define new person array based on giving information
+            var updated_name = {
+              name: (persons.filter(updates => updates.name === new_name))[0].name,
+              number: new_number,
+              id: (persons.filter(updates => updates.name === new_name))[0].id
+            }
+
+            console.log("updated_name",updated_name)
+
+
+            commsService
+            .update(updated_name).then(response => {
+              console.log("update operation succeeded",response)
+              console.log("persons",persons)
+              // remove person's old information from phonebook, add a new one
+              setPersons((persons.filter(all => all.id !== updated_name.id)).concat(updated_name))
+              setNotificationMessage(
+                `${new_name}'s phone number changed succesfully to ${new_number}`
+              )
+              setNotificationMessageType("success")
+              setTimeout(() => {
+                setNotificationMessage(null)
+                setNotificationMessageType("success")
+              }, 5000)
+            })
+            .catch(error => {
+              console.log("error situation")
+              setNotificationMessage(
+                `Unfourtunately ${new_name} data already removed from server`
+              )
+              setNotificationMessageType("error")
+              setPersons((persons.filter(n=>n.id !==updated_name.id)))
+              setTimeout(() => {
+                setNotificationMessage(null)
+                setNotificationMessageType("error")
+              }, 5000)
+            })
+          }
+      }
     }
-    console.log("nameObject",nameObject)
-    commsService
-      .create(nameObject).then(response => {
-        console.log("received response from create operation",response)
-        //setPersons(persons.concat(nameObject))
-        setPersons(response.data)
-        setNotificationMessage(
-        `${new_name}'s data added succesfully to phonebook`
-        )
-        setNotificationMessageType("success")
-        setTimeout(() => {
-          setNotificationMessage(null)
+    else {
+      // Add new person tho phonebook
+      var nameObject = {
+        name: new_name,
+        number: new_number
+      }
+      console.log("nameObject",nameObject)
+      commsService
+        .create(nameObject).then(response => {
+          console.log("received response from create operation",response)
+          setPersons(persons.concat(response.data))
+          setNotificationMessage(
+          `${response.data.name}'s data added succesfully to phonebook`
+          )
           setNotificationMessageType("success")
-        }, 5000)
-      })
-      .catch(error => {
-        setNotificationMessage(
-          JSON.stringify(error.response.data)
-        )
-        setNotificationMessageType("error")
-        setTimeout(() => {
-          setNotificationMessage(null)
+          setTimeout(() => {
+            setNotificationMessage(null)
+            setNotificationMessageType("success")
+          }, 5000)
+        })
+        .catch(error => {
+          console.log(".catch/error from .create operation",error)
+          setNotificationMessage(
+            JSON.stringify(error.response.data)
+          )
           setNotificationMessageType("error")
-        }, 5000)
-      })
-    setNewName('')
-    setNewNumber('')
-  }
+          setTimeout(() => {
+            setNotificationMessage(null)
+            setNotificationMessageType("error")
+          }, 5000)
+        })
+      setNewName('')
+      setNewNumber('')
+    }
+}
 
   // user wants to delete name from phonebook
   const deleteName = (event) => {
@@ -152,7 +209,7 @@ const App = () => {
 }
 
 const Persons = (props) => {
-
+  
   return (props.persons.filter(filter_rule => filter_rule.name.toLowerCase().indexOf(props.limitVisibility.toLowerCase()) === 0)).map(filtered => <p key={filtered.name}>&nbsp;{filtered.name} {filtered.number}
   <input type="button" name={filtered.name} value="poista" onClick={props.deleteName}/>
   </p>)

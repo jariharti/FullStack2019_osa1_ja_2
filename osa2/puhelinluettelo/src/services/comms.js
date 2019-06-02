@@ -6,7 +6,6 @@ const getAll = () => {
   return request.then(response => response)
 }
 
-
 const create = (newObject) => {
   const request = axios.post(baseUrl, newObject)
   return request.then(response => response)
@@ -19,9 +18,7 @@ const remove = (deletedObject) => {
 
 const update = (updatedObject) => {
   const request = axios.put(`${baseUrl}/${updatedObject.id}`, updatedObject)
-  return request.then(response => {
-  return response.status;
-  })
+  return request.then(response => response)
 }
 
 export default { getAll, create, remove, update }
