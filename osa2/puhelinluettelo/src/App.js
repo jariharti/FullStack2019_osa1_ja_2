@@ -123,7 +123,7 @@ const App = () => {
           }, 5000)
         })
         .catch(error => {
-          console.log(".catch/error from .create operation",error)
+          console.log(".catch/error from .create operation",error.response.data)
           setNotificationMessage(
             JSON.stringify(error.response.data)
           )
