@@ -1,9 +1,9 @@
 # [Full Stack Web Developer program](https://fullstackopen.com) - University of Helsinki – Computer Science Studies
 
-* Courses 1,2 Theme: Frontend development with React
+*Courses 1,2 Theme: Frontend development with React * <br />
 
-** Jari Hartikainen, 23.5.2019 ** <br />
-** my email: jihartikainen@hotmail.com ** <br />
+**Jari Hartikainen, 23.5.2019 ** <br />
+**my email: jihartikainen@hotmail.com ** <br />
 [my Linkedin profile](https://www.linkedin.com/in/jari-hartikainen/)
 
 ** General **
